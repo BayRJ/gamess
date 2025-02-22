@@ -1,0 +1,83 @@
+.container {
+  /* max-width: 650px;
+  margin: 5px;
+
+  padding: 30px;
+  border-radius: 10px;
+  box-sizing: border-box; */
+  border: 1px solid #ced4da;
+  /* background: #fff; */
+
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  background-color: white;
+}
+
+.category-btn {
+  padding: 8px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.test {
+  user-select: none;
+}
+
+span {
+  user-select: none;
+  cursor: text;
+}
+
+span.active {
+  border-bottom: 3px solid blue;
+}
+
+span.correct {
+  background-color: rgb(22, 178, 22);
+}
+
+span.wrong {
+  color: darkred;
+  background-color: pink;
+}
+
+.result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid rgb(106, 106, 104);
+}
+
+.result p {
+  font-size: 20px;
+}
+
+button.btn {
+  padding: 5px;
+  outline: none;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #049c13;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.5s;
+  font-weight: bold;
+}
+
+button.btn:hover {
+  background-color: #02500b;
+}
+
+.game-modal {
+  background-image: url('../../../public/images/typing-game.png');
+  border: 10px solid white;
+}
+
+.picking-bg {
+  background-color: black;
+}

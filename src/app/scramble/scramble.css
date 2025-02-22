@@ -1,0 +1,43 @@
+.category-btn {
+  padding: 8px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.container .content {
+  margin: 25px 20px 35px;
+}
+
+.details p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.content input {
+  width: 100%;
+  height: 60px;
+}
+
+.buttons button {
+  border: none;
+  outline: none;
+  padding: 15px 0;
+
+  border-radius: 5px;
+  cursor: pointer;
+  width: calc(100% / 2 - 8px);
+  color: #fff;
+}
+
+.game-modal {
+  background-image: url('../../../public/images/blockhain-bg.png');
+  border: 10px solid white;
+}
+
+.picking-bg {
+  background-color: black;
+}
