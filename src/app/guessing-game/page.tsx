@@ -112,11 +112,16 @@ export default function GuessingGame() {
 
   return (
     <div
-      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} ${
-        category === 'nft' ? 'bg-purple-900' : ''
-      } ${
-        category === 'cryptocurrency' ? 'bg-yellow-900' : ''
-      }  flex items-center justify-center min-h-screen h-screen w-screen`}
+      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} 
+      ${category === 'nft' ? 'bg-purple-900' : ''} 
+      ${category === 'cryptocurrency' ? 'bg-yellow-900' : ''}  
+      ${
+        guessWord && correctLetters.length === uniqueArray.length
+          ? 'bg-green-900'
+          : ''
+      }  
+      ${guessCount < 1 ? 'bg-red-900' : ''}  
+      flex items-center justify-center min-h-screen h-screen w-screen`}
     >
       {isPickingCategory ? (
         <div className="picking-bg fixed bg-opacity-60 bg-black left-0 top-40 w-[100%] h-[110%]  flex items-center justify-center -mt-40 z-10 pointer-events-auto">
@@ -177,6 +182,30 @@ export default function GuessingGame() {
             >
               Play Again
             </button>
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+
+      {(guessWord && correctLetters.length === uniqueArray.length) ||
+      guessCount < 1 ? (
+        <div
+          className={`fixed left-50 top-0  flex  justify-center mt-20 z-09 pointer-events-auto p-1`}
+        >
+          <div
+            className={`content ${guessCount < 1 ? 'bg-red-600' : ''} ${
+              guessWord && correctLetters.length === uniqueArray.length
+                ? 'bg-green-600'
+                : ''
+            } max-w-[400px] w-full max-h-[100px] h-full text-center rounded-lg p-8 mb-24 flex  justify-center items-center gap-10`}
+          >
+            <h4 className="text-4xl font-bold text-white">
+              {guessCount < 1 ? 'No more guesses' : ''}
+              {guessWord && correctLetters.length === uniqueArray.length
+                ? 'Correct Word'
+                : ''}
+            </h4>
           </div>
         </div>
       ) : (
