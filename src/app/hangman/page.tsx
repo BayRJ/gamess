@@ -21,6 +21,7 @@ export default function Home() {
   const [tries, setTries] = useState(3)
   const [score, setScore] = useState(0)
   const [gameOver, setGameOver] = useState(false)
+  const [isCorrect, setIsCorrect] = useState(false)
   const lettersDisplayed = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
   const playAgain = () => {
@@ -103,9 +104,11 @@ export default function Home() {
   }
   if (correctLetters.length === currentWord.length) {
     setGameOver(true)
-    setCorrectLetters([])
+    setIsCorrect(true)
     setScore(score + 10)
+    setCorrectLetters([])
     setTimeout(() => {
+      setIsCorrect(false)
       setGameOver(false)
       playAgain()
     }, 2000)
@@ -118,11 +121,13 @@ export default function Home() {
 
   return (
     <div
-      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} ${
-        category === 'nft' ? 'bg-purple-900' : ''
-      } ${
-        category === 'cryptocurrency' ? 'bg-yellow-900' : ''
-      }  flex items-center justify-center min-h-screen h-screen w-screen`}
+      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} 
+      ${category === 'nft' ? 'bg-purple-900' : ''} 
+      ${category === 'cryptocurrency' ? 'bg-yellow-900' : ''}  
+      ${wrongGuessCount === maxGuesses ? 'bg-red-900' : ''} ${
+        isCorrect ? 'bg-green-900' : ''
+      }
+      flex items-center justify-center min-h-screen h-screen w-screen`}
     >
       {isPickingCategory ? (
         <div className=" picking-bg fixed bg-opacity-60 bg-black left-0 top-40 w-[100%] h-[110%]  flex items-center justify-center -mt-40 z-10 pointer-events-auto">
@@ -184,6 +189,27 @@ export default function Home() {
             >
               Play Again
             </button>
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+
+      {isCorrect || wrongGuessCount === maxGuesses ? (
+        <div
+          className={`fixed left-50 top-0  flex  justify-center mt-20 z-09 pointer-events-auto p-1`}
+        >
+          <div
+            className={`content ${
+              wrongGuessCount === maxGuesses ? 'bg-red-600' : ''
+            } ${
+              isCorrect ? 'bg-green-600' : ''
+            } max-w-[400px] w-full max-h-[100px] h-full text-center rounded-lg p-8 mb-24 flex  justify-center items-center gap-10`}
+          >
+            <h4 className="text-4xl font-bold text-white">
+              {wrongGuessCount === maxGuesses ? 'No more guesses' : ''}
+              {isCorrect ? 'Correct Word' : ''}
+            </h4>
           </div>
         </div>
       ) : (

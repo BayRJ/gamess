@@ -16,6 +16,8 @@ export default function Scramble() {
   const [tries, setTries] = useState(6)
   const [score, setScore] = useState(0)
   const [showGameOverModal, setShowGameOverModal] = useState(false)
+  const [isIncorrect, setIsIncorrect] = useState(false)
+  const [isCorrect, setIsCorrect] = useState(false)
 
   const timerRef = useRef(null)
   const correctWordRef = useRef(correctWord)
@@ -105,13 +107,21 @@ export default function Scramble() {
   function checkWord() {
     let userWord = userInput.toLowerCase()
     if (userWord !== correctWord) {
-      alert(`Oops! ${userWord} is not a correct word`)
+      // alert(`Oops! ${userWord} is not a correct word`)
+      setIsIncorrect(true)
+      setTimeout(() => {
+        setIsIncorrect(false)
+      }, 1000)
     }
     if (userWord === correctWord) {
-      alert(`Congrats! ${userWord.toUpperCase()} is the correct word`)
-      setScore(score + 10)
-      setUserInput('')
-      initGame()
+      // alert(`Congrats! ${userWord.toUpperCase()} is the correct word`)
+      setIsCorrect(true)
+      setTimeout(() => {
+        setIsCorrect(false)
+        setScore(score + 10)
+        setUserInput('')
+        initGame()
+      }, 1000)
     }
   }
 
@@ -139,11 +149,12 @@ export default function Scramble() {
 
   return (
     <div
-      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} ${
-        category === 'nft' ? 'bg-purple-900' : ''
-      } ${
-        category === 'cryptocurrency' ? 'bg-yellow-900' : ''
-      }  flex items-center justify-center min-h-screen h-screen w-screen`}
+      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} 
+      ${category === 'nft' ? 'bg-purple-900' : ''} 
+      ${category === 'cryptocurrency' ? 'bg-yellow-900' : ''}  
+      ${isIncorrect || isTimesUp ? 'bg-red-900' : ''} 
+      ${isCorrect ? 'bg-green-900' : ''} 
+      flex items-center justify-center min-h-screen h-screen w-screen`}
     >
       {isPickingCategory ? (
         <div className="picking-bg fixed bg-opacity-60 bg-black left-0 top-40 w-[100%] h-[110%]  flex items-center justify-center -mt-40 z-10 pointer-events-auto">
@@ -227,6 +238,29 @@ export default function Scramble() {
       ) : (
         ''
       )}
+
+      {isIncorrect || isCorrect || isTimesUp ? (
+        <div
+          className={`fixed left-50 top-0  flex  justify-center mt-20 z-09 pointer-events-auto p-1`}
+        >
+          <div
+            className={`content ${
+              isIncorrect || isTimesUp ? 'bg-red-600' : ''
+            } ${
+              isCorrect ? 'bg-green-600' : ''
+            } max-w-[400px] w-full max-h-[100px] h-full text-center rounded-lg p-8 mb-24 flex  justify-center items-center gap-10`}
+          >
+            <h4 className="text-4xl font-bold text-white">
+              {isIncorrect ? 'Incorrect Word' : ''}
+              {isCorrect ? 'Correct Word' : ''}
+              {isTimesUp ? 'Times Up' : ''}
+            </h4>
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+
       <div className="container w-[950px] rounded-md bg-white">
         <div className="flex items-center justify-between">
           <h2 className="text-4xl font-medium py-4 px-6 ">Word Scramble</h2>
