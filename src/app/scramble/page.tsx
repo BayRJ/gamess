@@ -149,11 +149,22 @@ export default function Scramble() {
 
   return (
     <div
-      className={`${category === 'blockchain' ? 'bg-blue-900' : ''} 
-      ${category === 'nft' ? 'bg-purple-900' : ''} 
-      ${category === 'cryptocurrency' ? 'bg-yellow-900' : ''}  
-      ${isIncorrect || isTimesUp ? 'bg-red-900' : ''} 
+      className={`${isIncorrect || isTimesUp ? 'bg-red-900' : ''} 
       ${isCorrect ? 'bg-green-900' : ''} 
+      ${category === 'blockchain' ? 'bg-blue-900' : ''} 
+      ${
+        category === 'nft' && !isIncorrect && !isCorrect && !isTimesUp
+          ? 'bg-purple-900'
+          : ''
+      } 
+      ${
+        category === 'cryptocurrency' &&
+        !isIncorrect &&
+        !isCorrect &&
+        !isTimesUp
+          ? 'bg-yellow-900'
+          : ''
+      }  
       flex items-center justify-center min-h-screen h-screen w-screen`}
     >
       {isPickingCategory ? (

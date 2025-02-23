@@ -113,8 +113,22 @@ export default function GuessingGame() {
   return (
     <div
       className={`${category === 'blockchain' ? 'bg-blue-900' : ''} 
-      ${category === 'nft' ? 'bg-purple-900' : ''} 
-      ${category === 'cryptocurrency' ? 'bg-yellow-900' : ''}  
+      ${
+        category === 'nft' &&
+        guessCount >= 1 &&
+        guessWord &&
+        correctLetters.length !== uniqueArray.length
+          ? 'bg-purple-900'
+          : ''
+      } 
+      ${
+        category === 'cryptocurrency' &&
+        guessCount >= 1 &&
+        guessWord &&
+        correctLetters.length !== uniqueArray.length
+          ? 'bg-yellow-900'
+          : ''
+      }  
       ${
         guessWord && correctLetters.length === uniqueArray.length
           ? 'bg-green-900'
