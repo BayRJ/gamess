@@ -122,11 +122,20 @@ export default function Home() {
   return (
     <div
       className={`${category === 'blockchain' ? 'bg-blue-900' : ''} 
-      ${category === 'nft' ? 'bg-purple-900' : ''} 
-      ${category === 'cryptocurrency' ? 'bg-yellow-900' : ''}  
-      ${wrongGuessCount === maxGuesses ? 'bg-red-900' : ''} ${
-        isCorrect ? 'bg-green-900' : ''
-      }
+      ${
+        category === 'nft' && wrongGuessCount !== maxGuesses && !isCorrect
+          ? 'bg-purple-900'
+          : ''
+      } 
+      ${
+        category === 'cryptocurrency' &&
+        wrongGuessCount !== maxGuesses &&
+        !isCorrect
+          ? 'bg-yellow-900'
+          : ''
+      }  
+      ${wrongGuessCount === maxGuesses ? 'bg-red-900' : ''} 
+      ${isCorrect ? 'bg-green-900' : ''}
       flex items-center justify-center min-h-screen h-screen w-screen`}
     >
       {isPickingCategory ? (
