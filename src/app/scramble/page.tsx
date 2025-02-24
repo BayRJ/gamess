@@ -212,6 +212,9 @@ export default function Scramble() {
                 >
                   Cryptocurrency
                 </button>
+                <button className="category-btn bg-black text-white w-[180%] text-4xl h-16 hover:bg-white hover:text-black">
+                  <a href="https://cryptowarriors.netlify.app">Go back</a>
+                </button>
               </div>
             </div>
           </div>
@@ -243,6 +246,9 @@ export default function Scramble() {
               }}
             >
               Play Again
+            </button>
+            <button className="category-btn bg-black text-white w-[180%] text-4xl h-16 hover:bg-white hover:text-black">
+              <a href="https://cryptowarriors.netlify.app">Go back</a>
             </button>
           </div>
         </div>
